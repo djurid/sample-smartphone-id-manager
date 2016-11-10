@@ -1,0 +1,6 @@
+{
+  "name": "sample-smartphone-id-manager",
+  "app_id": "nl.utwente.dsbaars.smartphoneidmanager",
+  "v2": true,
+  "typescript": true
+}

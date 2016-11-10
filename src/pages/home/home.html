@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>DjurID ({{ balance| number }} Ξ )</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="page1">
+    <ion-list>
+        <ion-list-header>
+            Nearby
+        </ion-list-header>
+        <ion-item-sliding *ngFor="let item of items">
+            <ion-item (click)="presentActionSheet(item.path)">
+                <ion-avatar item-left *ngIf="item.logo">
+                    <img src="assets/logo/{{ item.logo }}">
+                </ion-avatar>
+                <h2>{{ item.name }}</h2>
+                <h3 *ngFor="let r of item.requested"> <ion-icon name="checkmark"></ion-icon> {{ r }}</h3>
+                <ion-icon name="share" item-right></ion-icon>
+            </ion-item>
+            <ion-item-options>
+                <button light>
+                    <ion-icon name="ios-more"></ion-icon>
+                    History
+                </button>
+                <button primary>
+                    <ion-icon name="barcode"></ion-icon>
+                    QR share
+                </button>
+                <button secondary>
+                    <ion-icon name="bluetooth"></ion-icon>
+                    BT share
+                </button>
+            </ion-item-options>
+            </ion-item-sliding>
+    </ion-list>
+      <div id="leaflet" data-tap-disabled="true"></div>
+
+</ion-content>

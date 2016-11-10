@@ -1,0 +1,76 @@
+<!--
+  Generated template for the Settings page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="settings">
+  <div padding>
+    <ion-segment [(ngModel)]="page">
+      <ion-segment-button value="personal">
+        Personal
+      </ion-segment-button>
+      <ion-segment-button value="server">
+        Server
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="page">
+    <ion-list  *ngSwitchCase="'server'">
+      <ion-list-header>
+        Server settings
+      </ion-list-header>
+      <ion-item>
+        <ion-label stacked>JSON-RPC server</ion-label>
+        <ion-select [(ngModel)]="json_rpc_server">
+          <ion-option *ngFor="let s of jsonRpcServers">{{ s }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Server info</ion-label>
+        <ion-input type="text" placeholder="Loading..."  [(ngModel)]="json_rpc_version" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>API version</ion-label>
+        <ion-input type="text" placeholder="Loading..."  [(ngModel)]="web3.version.api" readonly></ion-input>
+      </ion-item>
+  </ion-list>
+  <ion-list *ngSwitchCase="'personal'">
+      <ion-list-header>
+        Personal settings
+      </ion-list-header>
+      <img src="{{ qrStr }}">
+
+      <ion-item>
+        <ion-label stacked>Wallet Seed</ion-label>
+        <ion-input type="text" [(ngModel)]="wallet_seed"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Primary address</ion-label>
+        <ion-input type="text" value="{{ hdwallet.getWallet().getAddressString() }}" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Extended pubkey</ion-label>
+        <ion-input type="text" value="{{ hdwallet.publicExtendedKey() }}" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Extended privkey</ion-label>
+        <ion-input type="password" value="{{ hdwallet.privateExtendedKey() }}" readonly></ion-input>
+      </ion-item>
+
+    </ion-list>
+  </div>
+</ion-content>
